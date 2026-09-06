@@ -1,0 +1,21 @@
+# === Core pipeline dependencies (Phase 1: sequential baseline) ===
+
+# ASR
+faster-whisper>=1.0.0
+sounddevice>=0.4.6          # mic capture
+webrtcvad>=2.0.10           # voice activity detection (end-of-utterance)
+
+# SLM
+llama-cpp-python>=0.2.90    # build with CUDA: CMAKE_ARGS="-DGGML_CUDA=on" pip install ...
+
+# TTS
+piper-tts>=1.2.0
+
+# Utilities
+pyyaml>=6.0
+numpy>=1.26
+scipy>=1.11
+
+# --- Later phases (uncomment when needed) ---
+# sentence-transformers>=2.7.0   # for divergence detector embeddings
+# mediapipe>=0.10.9              # for CV engagement detection

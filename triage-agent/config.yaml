@@ -1,0 +1,30 @@
+# === Triage Agent Config ===
+# All tunables live here so nothing is hardcoded in source files.
+
+asr:
+  backend: "faster-whisper"        # or "whisper.cpp"
+  model_size: "small"              # tiny/base/small/medium — start small for VRAM budget
+  device: "cuda"
+  compute_type: "int8_float16"     # quantized for VRAM savings
+  language: "en"
+  partial_emit_interval_ms: 250    # how often to emit partial hypotheses
+  vad_silence_ms: 500              # silence duration to consider end-of-utterance
+
+slm:
+  backend: "ollama"                 # switched from llama.cpp -- no build tools needed on Windows
+  model_name: "qwen2.5:1.5b-instruct"
+  max_new_tokens: 200
+  temperature: 0.3                  # low temp — clinical, deterministic-ish behavior
+
+tts:
+  backend: "piper"
+  voice_model: "models/tts/en_US-lessac-medium.onnx"
+  sample_rate: 22050
+
+pipeline:
+  mode: "sequential"                # "sequential" | "speculative" — toggle for A/B benchmarking
+  max_vram_gb: 8
+
+logging:
+  level: "INFO"
+  log_dir: "experiments/logs"

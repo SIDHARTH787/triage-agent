@@ -1,0 +1,42 @@
+# === Triage Agent Config ===
+# All tunables live here so nothing is hardcoded in source files.
+
+asr:
+  backend: "faster-whisper"
+  model_size: "tiny"
+  final_model_size: "base"
+  device: "cpu"
+  compute_type: "int8"
+  language: "en"
+  input_device: 1
+  partial_emit_interval_ms: 500
+  vad_silence_ms: 500
+
+slm:
+  backend: "ollama"
+  model_name: "qwen2.5:1.5b-instruct"
+  max_new_tokens: 200
+  temperature: 0.3
+
+tts:
+  backend: "piper"
+  voice_model: "D:\\bioai_project\\1Miniproject\\triage-agent\\models\\tts\\en_US-lessac-medium.onnx"
+  sample_rate: 22050
+
+pipeline:
+  mode: "sequential"
+  max_vram_gb: 4
+
+cv:
+  enabled: true
+  camera_index: 0
+  cascade_path: "D:\\bioai_project\\1Miniproject\\triage-agent\\models\\cv\\haarcascade_frontalface_default.xml"
+  check_interval_s: 1.0
+  absence_grace_s: 5.0
+
+logging:
+  level: "INFO"
+  log_dir: "experiments/logs"
+
+speculative:
+  divergence_threshold: 0.7

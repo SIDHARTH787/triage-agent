@@ -1,0 +1,21 @@
+# === Core pipeline dependencies (Phase 1: sequential baseline) ===
+
+# ASR
+faster-whisper>=1.0.0
+sounddevice>=0.4.6          # mic capture
+
+# SLM
+ollama>=0.3.0               # requires Ollama app installed separately: https://ollama.com/download
+webrtcvad-wheels>=2.0.14    # prebuilt wheels -- avoids MSVC build tools on Windows
+
+# TTS
+piper-tts>=1.2.0
+
+# Utilities
+pyyaml>=6.0
+numpy>=1.26
+scipy>=1.11
+
+# --- Later phases (uncomment when needed) ---
+# sentence-transformers>=2.7.0   # for divergence detector embeddings
+# mediapipe>=0.10.9              # for CV engagement detection
