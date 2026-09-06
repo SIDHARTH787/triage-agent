@@ -1,0 +1,43 @@
+# === Triage Agent Config (template) ===
+# Copy this to config.yaml and adjust paths/devices for your machine.
+
+asr:
+  backend: "faster-whisper"
+  model_size: "tiny"                # fast model for real-time partials
+  final_model_size: "base"          # larger, more accurate model for one-time final transcription
+  device: "cpu"                     # GPU may cause VRAM contention with the SLM on constrained cards
+  compute_type: "int8"
+  language: "en"
+  input_device: 0                   # run `python -c "import sounddevice as sd; print(sd.query_devices())"` to find yours
+  partial_emit_interval_ms: 500
+  vad_silence_ms: 500
+
+slm:
+  backend: "ollama"
+  model_name: "qwen2.5:1.5b-instruct"
+  max_new_tokens: 200
+  temperature: 0.3
+
+tts:
+  backend: "piper"
+  voice_model: "models/tts/en_US-lessac-medium.onnx"  # set to your absolute path
+  sample_rate: 22050
+
+pipeline:
+  mode: "sequential"                # "sequential" | "speculative"
+  max_vram_gb: 4                    # set to your GPU's actual VRAM
+  keyboard_interrupt_enabled: true  # requires running via `python -m src.pipeline`, not Jupyter
+
+cv:
+  enabled: false                    # requires opencv-python; set true to enable presence gating
+  camera_index: 0
+  check_interval_s: 1.0
+  absence_grace_s: 5.0
+  cascade_path: null                # set to an absolute path if your opencv-python doesn't bundle the cascade file
+
+speculative:
+  divergence_threshold: 0.7         # commit if similarity >= threshold, else rollback and regenerate
+
+logging:
+  level: "INFO"
+  log_dir: "experiments/logs"

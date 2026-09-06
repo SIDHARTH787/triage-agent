@@ -1,0 +1,31 @@
+# Models (large binary files -- don't commit these)
+models/
+*.onnx
+*.onnx.json
+*.gguf
+
+# Ollama models are stored outside the repo (D:\ollama_models), not tracked here
+
+# Logs
+experiments/logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config with local absolute paths (share config.example.yaml instead)
+# Uncomment if your config.yaml has machine-specific absolute paths you don't want public:
+# config.yaml
+config.yaml
