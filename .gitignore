@@ -29,3 +29,5 @@ Thumbs.db
 # Uncomment if your config.yaml has machine-specific absolute paths you don't want public:
 # config.yaml
 config.yaml
+github-setup-files.zip
+triage-agent-slm-update.zip
